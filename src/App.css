@@ -1,4 +1,4 @@
-*,
+/* *,
 *::before,
 *::after {
   box-sizing: border-box;
@@ -19,4 +19,4 @@
       background-position: top center;
       background-size: contain;
       border:1px black solid;
-}
+} */
