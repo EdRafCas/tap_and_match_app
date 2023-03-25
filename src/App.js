@@ -6,22 +6,23 @@ import './App.scss';
 const App = () => {
   return ( 
     <div className='container' >
-      <div className='column number-1'>
-        <div>
+      <div className='inner-container first-column'>
+        <div className='item-container'>
+          <div className='left-jigsaw'></div>
           <span>1</span>
-        </div>
-        
-        <div>
-          <span>2</span>
-        </div>
+          </div>
+        <div className='item-container'><span>1</span></div>
+        <div className='item-container'><span>1</span></div>
+        <div className='item-container'><span>1</span></div>
       </div>
-      <div className='column number-2'>
-      <div>
-          <span>3</span>
-        </div>
-        <div>
-          <span>4</span>
-        </div>
+      <div className='inner-container second-column'>
+        <div className='item-container'>
+        <div className='right-jigsaw'></div>
+          <span>1</span>
+          </div>
+        <div className='item-container'><span>1</span></div>
+        <div className='item-container'><span>1</span></div>
+        <div className='item-container'><span>1</span></div>
       </div>
     </div>
    );
