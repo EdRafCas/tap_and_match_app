@@ -1,4 +1,5 @@
 import React,{useState} from 'react';
+import LeftJigSaw from './Components/LeftJigSaw';
 import './App.css';
 import './App.scss';
 
@@ -9,7 +10,7 @@ const App = () => {
 
   const [leftColumn, changeLeftColumn] = useState("none")
   const [rightColumn, changeRightColumn] = useState("none")
-  
+
   const WordList = [
     {
       id:1,
@@ -51,10 +52,15 @@ const App = () => {
       <div className='inner-container first-column'>
         {ShuffledList.map((item, index)=>{
           return(
+            <LeftJigSaw item={item}
+                        leftColumn={leftColumn}
+                        changeLeftColumn={changeLeftColumn}/>
+         /* 
           <div className='item-container' key={WordList.index}>
             <div className='left-jigsaw'></div>
             <span>{item.id}, {item.english}</span>
-          </div>
+          </div> 
+          */
           )
         })}
       </div>

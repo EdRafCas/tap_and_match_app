@@ -47,11 +47,14 @@
       cursor:pointer;
       /* background-color: black; */
       &:hover{
-            background-color: red;
+            background-color: rgb(137, 206, 109);
             .right-jigsaw{
-                  background-color: red;
+                  background-color: rgb(137, 206, 109);
             }
       }
+    /*   &:active{
+            background-color: green;
+      } */
       span{
             font-size:1rem;
             font-weight:800;
@@ -85,6 +88,10 @@
       background-color: white;
       overflow:hidden;
       opacity:1;
+}
+
+.green{
+      background-color: green;
 }
 
 @media screen and (max-width: 600px) {
