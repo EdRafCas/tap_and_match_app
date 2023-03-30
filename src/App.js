@@ -1,5 +1,6 @@
 import React,{useState} from 'react';
 import LeftJigSaw from './Components/LeftJigSaw';
+import Columns from './Components/Columns'
 import './App.css';
 import './App.scss';
 
@@ -8,34 +9,39 @@ import './App.scss';
 
 const App = () => {
 
-  const [leftColumn, changeLeftColumn] = useState("none")
-  const [rightColumn, changeRightColumn] = useState("none")
+  
+  
 
   const WordList = [
     {
       id:1,
       english:"Chair",
-      spanish:"Silla"
+      spanish:"Silla",
+      completed:false
     },
     {
       id:2,
       english:"House",
-      spanish:"Casa"
+      spanish:"Casa",
+      completed:false
     },
     {
       id:3,
       english:"Orange",
-      spanish:"Naranja"
+      spanish:"Naranja",
+      completed:false
     },
     {
       id:4,
       english:"Tree",
-      spanish:"Arbol"
+      spanish:"Arbol",
+      completed:false
     },
     {
       id:5,
-      english:"Tree",
-      spanish:"Arbol"
+      english:"Cellphone",
+      spanish:"Celular",
+      completed:false
     }
   ]
 
@@ -49,22 +55,19 @@ const App = () => {
 
   return ( 
     <div className='container' >
-      <div className='inner-container first-column'>
+      <Columns
+        ShuffledList={ShuffledList}
+        ShuffledList2={ShuffledList2}/>
+      {/* <div className='inner-container first-column'>
         {ShuffledList.map((item, index)=>{
           return(
             <LeftJigSaw item={item}
                         leftColumn={leftColumn}
                         changeLeftColumn={changeLeftColumn}/>
-         /* 
-          <div className='item-container' key={WordList.index}>
-            <div className='left-jigsaw'></div>
-            <span>{item.id}, {item.english}</span>
-          </div> 
-          */
-          )
-        })}
-      </div>
-      <div className='inner-container second-column'>
+
+          )})}
+      </div> */}
+     {/*  <div className='inner-container second-column'>
         {ShuffledList2.map((item, index)=>{
           return(
           <div className='item-container' key={ShuffledList2.index}>
@@ -73,7 +76,7 @@ const App = () => {
           </div>
           )
         })}
-      </div>
+      </div> */}
     </div>
    );
 }
