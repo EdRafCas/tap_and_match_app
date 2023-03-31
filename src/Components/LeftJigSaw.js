@@ -6,30 +6,26 @@ const LeftJigSaw = ({item, leftColumn, rightColumn, changeLeftColumn,existingShu
       const [turnGreen, changeTurnGreen] = useState(false)
       const [mutableitem, changeMutableItem] =useState(item)
 
-      /* const matching = mutableitem.completed? (
-            <div>
-                  <span>match</span>
-            </div>
-      )
-      : (""); */
 
       
       useEffect(()=>{
-            if(leftColumn === rightColumn){
-                  console.log("cheking if reachs")
-                  const updateexistingShuffledList = existingShuffledList.map((listed)=>listed.id === leftColumn ? {...listed, completed:true}: listed)
+            if(leftColumn.id === rightColumn.id && leftColumn.id !== undefined){
+                  console.log("this is meant to trigger something in both sides")
+
+                  
+
+                  /* const updateexistingShuffledList = existingShuffledList.map((listed)=>listed.id === leftColumn ? {...listed, completed:true}: listed)
                   changeExistingShuffledList(updateexistingShuffledList)
-                  console.log(leftColumn.completed)
+                  console.log(leftColumn.completed) */
             }else{
                   console.log("they dont match")
             }
           
       
-      },[leftColumn,rightColumn, changeLeftColumn, item, changeMutableItem])
+      },[leftColumn,rightColumn, changeLeftColumn, item, changeExistingShuffledList, existingShuffledList])
 
       const handleChange = ()=>{
             changeLeftColumn(item);
-            console.log(leftColumn.completed);
       }
 
 
@@ -38,10 +34,17 @@ const LeftJigSaw = ({item, leftColumn, rightColumn, changeLeftColumn,existingShu
       :'item-container';
 
       return (    
-      <div className={leftBlock} key={item.index} onClick={()=>changeLeftColumn(item)}>
+      <div className={leftBlock} key={item.index} onClick={handleChange}>
             <div className='left-jigsaw'></div>
             <span>{item.id}, {item.english}</span>
-            {/* {matching} */}
+            {/* {(leftColumn.id === rightColumn.id && leftColumn.id === item.id && leftColumn.id !== undefined)?
+            <div>
+                  <span>{item.completed}</span>
+            </div>:
+            ""} */}
+            {item.completed?
+            "match":
+            ""}
       </div>
        );
 }

@@ -1,22 +1,33 @@
 import React,{useState, useEffect} from 'react';
 import LeftJigSaw from './LeftJigSaw';
 import RightJigsaw from './RightJigsaw';
+import AnimationCheck from './AnimationCheck';
 import '../App.scss'
 
 const Columns = ({ShuffledList, ShuffledList2}) => {
-      const [leftColumn, changeLeftColumn] = useState("none")
-      const [rightColumn, changeRightColumn] = useState("none")
+      const [leftColumn, changeLeftColumn] = useState("left")
+      const [rightColumn, changeRightColumn] = useState("right")
       const [existingShuffledList, changeExistingShuffledList] = useState(ShuffledList)
+      const [existingShuffledList2, changeExistingShuffledList2] = useState(ShuffledList2)
+      const [animationFunction, changeAnimationFunction] = useState(false)
+
 
       useEffect(()=>{
           console.log("columna izquierda=> "+leftColumn.id)
           console.log("columna derecha=> "+rightColumn.id)
-          if(leftColumn.id === rightColumn.id){
+          if(leftColumn.id === rightColumn.id && leftColumn.id !== undefined && rightColumn.id !== undefined){
             console.log("they match")
+            changeAnimationFunction(true)
+            const updateexistingShuffledList = existingShuffledList.map((listed)=>listed.id === leftColumn.id ? {...listed, completed:true}: listed)
+            console.log("columna izquierda=> "+leftColumn.completed)
+            console.log("starting updating left shuffle")
+            changeExistingShuffledList(updateexistingShuffledList)
+            console.log("finished updating left shuffle")
+            console.log("columna izquierda=> "+leftColumn.completed)
       }
           
       
-      },[leftColumn,rightColumn])
+      },[leftColumn,rightColumn,])
 
 
       
@@ -24,9 +35,11 @@ const Columns = ({ShuffledList, ShuffledList2}) => {
       return (   
             <>
             <div className='inner-container first-column'>
+                  <>
                   {existingShuffledList.map((item, index)=>{
                         return(
-                              <LeftJigSaw item={item}
+                              <LeftJigSaw key={item.index}
+                                          item={item}
                                           ShuffledList={ShuffledList}
                                           leftColumn={leftColumn}
                                           rightColumn={rightColumn}
@@ -34,16 +47,37 @@ const Columns = ({ShuffledList, ShuffledList2}) => {
                                           existingShuffledList={existingShuffledList}
                                           changeExistingShuffledList={changeExistingShuffledList}/>
                   )})}
+                   <div className={'item-container'} >
+                                    <div className='left-jigsaw'></div>
+                              <span>check test</span>
+                              {animationFunction?
+                              <AnimationCheck/>
+                              :""}
+                  </div>
+                  </>
             </div>
             <div className='inner-container second-column'>
+                  <>
                   {ShuffledList2.map((item, index)=>{
                         return(
-                        <RightJigsaw item={item}
-                        leftColumn={leftColumn}
-                        rightColumn={rightColumn}
-                        changeRightColumn={changeRightColumn}/>
+                              <RightJigsaw key={item.index}
+                                          item={item}
+                                          ShuffledList2={ShuffledList2}
+                                          leftColumn={leftColumn}
+                                          rightColumn={rightColumn}
+                                          changeRightColumn={changeRightColumn}
+                                          existingShuffledList2={existingShuffledList2}
+                                          changeExistingShuffledList2={changeExistingShuffledList2}/>
 
                   )})}
+                  <div className={'item-container'} >
+                                    <div className='right-jigsaw'></div>
+                              <span>check test</span>
+                              {animationFunction?
+                              <AnimationCheck/>
+                              :""}
+                  </div>
+                  </>
             </div>
             </> 
        );
