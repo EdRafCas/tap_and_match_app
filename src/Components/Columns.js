@@ -47,13 +47,12 @@ const Columns = ({ShuffledList, ShuffledList2}) => {
                                           existingShuffledList={existingShuffledList}
                                           changeExistingShuffledList={changeExistingShuffledList}/>
                   )})}
-                   <div className={'item-container'} >
-                                    <div className='left-jigsaw'></div>
-                              <span>check test</span>
+                   {/* <div  >
+                                    
                               {animationFunction?
                               <AnimationCheck/>
                               :""}
-                  </div>
+                  </div> */}
                   </>
             </div>
             <div className='inner-container second-column'>
@@ -70,13 +69,11 @@ const Columns = ({ShuffledList, ShuffledList2}) => {
                                           changeExistingShuffledList2={changeExistingShuffledList2}/>
 
                   )})}
-                  <div className={'item-container'} >
-                                    <div className='right-jigsaw'></div>
-                              <span>check test</span>
+                  {/* <div  >
                               {animationFunction?
                               <AnimationCheck/>
                               :""}
-                  </div>
+                  </div> */}
                   </>
             </div>
             </> 

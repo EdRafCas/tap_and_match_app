@@ -1,5 +1,7 @@
 import React,{useState, useEffect} from 'react';
 import '../App.scss'
+import '../Components/AnimationCheck'
+import AnimationCheck from '../Components/AnimationCheck';
 
 
 const LeftJigSaw = ({item, leftColumn, rightColumn, changeLeftColumn,existingShuffledList, changeExistingShuffledList}) => {
@@ -43,7 +45,7 @@ const LeftJigSaw = ({item, leftColumn, rightColumn, changeLeftColumn,existingShu
             </div>:
             ""} */}
             {item.completed?
-            "match":
+            <AnimationCheck item={item}/>:
             ""}
       </div>
        );
