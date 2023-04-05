@@ -19,9 +19,11 @@ const Columns = ({ShuffledList, ShuffledList2}) => {
             console.log("they match")
             changeAnimationFunction(true)
             const updateexistingShuffledList = existingShuffledList.map((listed)=>listed.id === leftColumn.id ? {...listed, completed:true}: listed)
+            const updateexistingShuffledList2 = existingShuffledList2.map((listed)=>listed.id === rightColumn.id ? {...listed, completed:true}: listed)
             console.log("columna izquierda=> "+leftColumn.completed)
             console.log("starting updating left shuffle")
             changeExistingShuffledList(updateexistingShuffledList)
+            changeExistingShuffledList2(updateexistingShuffledList2)
             console.log("finished updating left shuffle")
             console.log("columna izquierda=> "+leftColumn.completed)
       }
