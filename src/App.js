@@ -58,25 +58,6 @@ const App = () => {
       <Columns
         ShuffledList={ShuffledList}
         ShuffledList2={ShuffledList2}/>
-      {/* <div className='inner-container first-column'>
-        {ShuffledList.map((item, index)=>{
-          return(
-            <LeftJigSaw item={item}
-                        leftColumn={leftColumn}
-                        changeLeftColumn={changeLeftColumn}/>
-
-          )})}
-      </div> */}
-     {/*  <div className='inner-container second-column'>
-        {ShuffledList2.map((item, index)=>{
-          return(
-          <div className='item-container' key={ShuffledList2.index}>
-            <div className='right-jigsaw'></div>
-            <span>{item.id}, {item.spanish}</span>
-          </div>
-          )
-        })}
-      </div> */}
     </div>
    );
 }

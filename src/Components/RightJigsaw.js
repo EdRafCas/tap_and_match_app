@@ -1,12 +1,13 @@
 import React,{useState, useEffect} from 'react';
 import '../App.scss'
+import '../Components/AnimationCheck'
 import AnimationCheck from '../Components/AnimationCheck';
 
 const RightJigsaw = ({item, leftColumn, rightColumn, changeRightColumn,existingShuffledList2, changeExistingShuffledList2}) => {
 
       useEffect(()=>{
             if(leftColumn.id === rightColumn.id && rightColumn.id !== undefined){
-                  console.log("cheking if reachs left side")
+                  console.log("this is meant to trigger something in right side")
 
             }else{
                   console.log("they dont match")
@@ -32,7 +33,7 @@ const RightJigsaw = ({item, leftColumn, rightColumn, changeRightColumn,existingS
             </div>:
             ""} */}
             {item.completed?
-            <AnimationCheck item={item}/>:
+            <AnimationCheck item={item} rightside/>:
             ""}
       </div>
        );
