@@ -10,7 +10,7 @@
 .container{
       display:flex;
       margin:auto;
-      flex-direction:row;
+      flex-direction:column;
       justify-content: center;
       align-items:center;
       max-width:750px;
@@ -23,6 +23,20 @@
       background-position: top center;
       background-size: contain;
       */
+      .progressBar{
+            margin-top:20px;
+            border:2px blue solid;
+            width:100%;
+      }
+      .column-container{
+            border:2px blue solid;
+
+            width:100%;
+            display:flex;
+            margin:auto;
+            flex-direction:row;
+            justify-content: center;
+      }
 }
 
 .inner-container{
@@ -86,16 +100,16 @@
 
 .right-jigsaw{
       position:absolute;
-      left:-10px;
-      top:20px;
+      left:-11px;
       width:10px;
       height:20px;
       border-radius: 10px 0px 0px 10px;
       border:1px black solid;
       border-right:none;
-      background-color: white;
+      background-color:white;
       overflow:hidden;
       opacity:1;
+      box-sizing: content-box;
       
       
       

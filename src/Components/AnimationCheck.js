@@ -23,7 +23,6 @@ const CheckIcon = styled.div`
 const CheckJigsawRight =styled.div`
       position:absolute;
       left:-11px;
-      top:20px;
       width:10px;
       height:20px;
       border-radius: 10px 0px 0px 10px;
@@ -92,7 +91,7 @@ const AnimationCheck= ({item, rightside}) => {
       
       },[item])
 
-      const checkContainer = item.completed? (
+      const checkContainer = loadGif? (
             <img src={MatchGif} alt={"Completed"}/>
       ) : ("meh");
 
@@ -105,18 +104,17 @@ const AnimationCheck= ({item, rightside}) => {
             <>
                   {loadGif?
                   <>
-                  {rightside?
-                  <>
-                  <CheckIcon className='check_container'>
-                        <CheckJigsawRight/>
-                        {checkContainer}
-                  </CheckIcon>
-                  </>
-                  :
-                  <CheckIcon className='check_container'>
-                        <CheckJigsawLeft/>
-                        {checkContainer}
-                  </CheckIcon>}
+                        {rightside?
+                        <CheckIcon className='check_container'>
+                              <CheckJigsawRight/>
+                              {checkContainer}
+                        </CheckIcon>
+                        :
+                        <CheckIcon className='check_container'>
+                              <CheckJigsawLeft/>
+                              {checkContainer}
+                        </CheckIcon>
+                        }
                   </>
                   :
                   <OverlayContainer onClick={(e)=>{e.stopPropagation();e.preventDefault();}}>

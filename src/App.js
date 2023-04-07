@@ -55,6 +55,7 @@ const App = () => {
 
   return ( 
     <div className='container' >
+      <div className='progressBar' >as</div>
       <Columns
         ShuffledList={ShuffledList}
         ShuffledList2={ShuffledList2}/>

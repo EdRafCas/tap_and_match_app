@@ -38,40 +38,40 @@ const Columns = ({ShuffledList, ShuffledList2}) => {
       
 
       return (   
-            <>
-            <div className='inner-container first-column'>
-                  <>
-                  {existingShuffledList.map((item, index)=>{
-                        return(
-                              <LeftJigSaw key={item.index}
-                                          item={item}
-                                          ShuffledList={ShuffledList}
-                                          leftColumn={leftColumn}
-                                          rightColumn={rightColumn}
-                                          changeLeftColumn={changeLeftColumn}
-                                          existingShuffledList={existingShuffledList}
-                                          changeExistingShuffledList={changeExistingShuffledList}/>
-                  )})}
-                  </>
-            </div>
-            <div className='inner-container second-column'>
-                  <>
-                  {existingShuffledList2.map((item, index)=>{
-                        return(
-                              <RightJigsaw key={item.index}
-                                          item={item}
-                                          ShuffledList2={ShuffledList2}
-                                          leftColumn={leftColumn}
-                                          rightColumn={rightColumn}
-                                          changeRightColumn={changeRightColumn}
-                                          existingShuffledList2={existingShuffledList2}
-                                          changeExistingShuffledList2={changeExistingShuffledList2}
-                                          />
+            <div className='column-container'>
+                  <div className='inner-container first-column'>
+                        <>
+                        {existingShuffledList.map((item, index)=>{
+                              return(
+                                    <LeftJigSaw key={item.index}
+                                                item={item}
+                                                ShuffledList={ShuffledList}
+                                                leftColumn={leftColumn}
+                                                rightColumn={rightColumn}
+                                                changeLeftColumn={changeLeftColumn}
+                                                existingShuffledList={existingShuffledList}
+                                                changeExistingShuffledList={changeExistingShuffledList}/>
+                        )})}
+                        </>
+                  </div>
+                  <div className='inner-container second-column'>
+                        <>
+                        {existingShuffledList2.map((item, index)=>{
+                              return(
+                                    <RightJigsaw key={item.index}
+                                                item={item}
+                                                ShuffledList2={ShuffledList2}
+                                                leftColumn={leftColumn}
+                                                rightColumn={rightColumn}
+                                                changeRightColumn={changeRightColumn}
+                                                existingShuffledList2={existingShuffledList2}
+                                                changeExistingShuffledList2={changeExistingShuffledList2}
+                                                />
 
-                  )})}
-                  </>
-            </div>
-            </> 
+                        )})}
+                        </>
+                  </div>
+            </div> 
        );
 }
  
