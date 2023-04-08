@@ -1,10 +1,13 @@
-import React,{useState, useEffect} from 'react';
+import React,{useState, useEffect, useContext} from 'react';
 import LeftJigSaw from './LeftJigSaw';
 import RightJigsaw from './RightJigsaw';
 import AnimationCheck from './AnimationCheck';
 import '../App.scss'
+import { CounterContext } from '../Context/CounterContext';
 
 const Columns = ({ShuffledList, ShuffledList2}) => {
+      const {counterBar} =useContext(CounterContext);
+      const {counterCompleted} =useContext(CounterContext);
       const [leftColumn, changeLeftColumn] = useState("left")
       const [rightColumn, changeRightColumn] = useState("right")
       const [existingShuffledList, changeExistingShuffledList] = useState(ShuffledList)
@@ -38,40 +41,44 @@ const Columns = ({ShuffledList, ShuffledList2}) => {
       
 
       return (   
-            <div className='column-container'>
-                  <div className='inner-container first-column'>
-                        <>
-                        {existingShuffledList.map((item, index)=>{
-                              return(
-                                    <LeftJigSaw key={item.index}
-                                                item={item}
-                                                ShuffledList={ShuffledList}
-                                                leftColumn={leftColumn}
-                                                rightColumn={rightColumn}
-                                                changeLeftColumn={changeLeftColumn}
-                                                existingShuffledList={existingShuffledList}
-                                                changeExistingShuffledList={changeExistingShuffledList}/>
-                        )})}
-                        </>
-                  </div>
-                  <div className='inner-container second-column'>
-                        <>
-                        {existingShuffledList2.map((item, index)=>{
-                              return(
-                                    <RightJigsaw key={item.index}
-                                                item={item}
-                                                ShuffledList2={ShuffledList2}
-                                                leftColumn={leftColumn}
-                                                rightColumn={rightColumn}
-                                                changeRightColumn={changeRightColumn}
-                                                existingShuffledList2={existingShuffledList2}
-                                                changeExistingShuffledList2={changeExistingShuffledList2}
-                                                />
+            <div className='container' >
+                  <div className='progressBar' >{counterBar}</div>
+                  <div className='column-container'>
+                        <div className='inner-container first-column'>
+                              <>
+                              {existingShuffledList.map((item, index)=>{
+                                    return(
+                                          <LeftJigSaw key={item.index}
+                                                      item={item}
+                                                      ShuffledList={ShuffledList}
+                                                      leftColumn={leftColumn}
+                                                      rightColumn={rightColumn}
+                                                      changeLeftColumn={changeLeftColumn}
+                                                      existingShuffledList={existingShuffledList}
+                                                      changeExistingShuffledList={changeExistingShuffledList}/>
+                              )})}
+                              </>
+                        </div>
+                        <div className='inner-container second-column'>
+                              <>
+                              {existingShuffledList2.map((item, index)=>{
+                                    return(
+                                          <RightJigsaw key={item.index}
+                                                      item={item}
+                                                      ShuffledList2={ShuffledList2}
+                                                      leftColumn={leftColumn}
+                                                      rightColumn={rightColumn}
+                                                      changeRightColumn={changeRightColumn}
+                                                      existingShuffledList2={existingShuffledList2}
+                                                      changeExistingShuffledList2={changeExistingShuffledList2}
+                                                      />
 
-                        )})}
-                        </>
+                              )})}
+                              </>
+                        </div>
                   </div>
-            </div> 
+                  <div className='progressBar' >{counterCompleted}</div>  
+            </div>
        );
 }
  

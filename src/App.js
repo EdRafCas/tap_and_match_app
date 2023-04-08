@@ -1,16 +1,14 @@
-import React,{useState} from 'react';
+import React,{useContext, useState} from 'react';
 import LeftJigSaw from './Components/LeftJigSaw';
 import Columns from './Components/Columns'
 import './App.css';
 import './App.scss';
+import {CounterContextProvider, CounterContext} from './Context/CounterContext';
 
 
 
 
 const App = () => {
-
-  
-  
 
   const WordList = [
     {
@@ -54,12 +52,13 @@ const App = () => {
   
 
   return ( 
-    <div className='container' >
-      <div className='progressBar' >as</div>
-      <Columns
-        ShuffledList={ShuffledList}
-        ShuffledList2={ShuffledList2}/>
-    </div>
+    <CounterContextProvider>
+      
+        <Columns
+          ShuffledList={ShuffledList}
+          ShuffledList2={ShuffledList2}/>
+      
+    </CounterContextProvider>
    );
 }
  
