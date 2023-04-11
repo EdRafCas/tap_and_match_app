@@ -14,6 +14,8 @@ const Columns = ({ShuffledList, ShuffledList2}) => {
       const [existingShuffledList2, changeExistingShuffledList2] = useState(ShuffledList2)
       const [animationFunction, changeAnimationFunction] = useState(false)
 
+      let countCompleted = existingShuffledList.filter(x => x.completed === true).length;
+
 
       useEffect(()=>{
           console.log("columna izquierda=> "+leftColumn.id)
@@ -42,7 +44,12 @@ const Columns = ({ShuffledList, ShuffledList2}) => {
 
       return (   
             <div className='container' >
-                  <div className='progressBar' >{counterBar}</div>
+                  <div className='progressBar' >
+                        <div className='smallDivsContainer'>
+
+                        </div>
+                        <div className='trackContainer'>{counterBar}</div>
+                  </div>
                   <div className='column-container'>
                         <div className='inner-container first-column'>
                               <>
@@ -77,7 +84,7 @@ const Columns = ({ShuffledList, ShuffledList2}) => {
                               </>
                         </div>
                   </div>
-                  <div className='progressBar' >{counterCompleted}</div>  
+                  <div className='progressCounter' ><span>{countCompleted +" "}♥</span></div>  
             </div>
        );
 }

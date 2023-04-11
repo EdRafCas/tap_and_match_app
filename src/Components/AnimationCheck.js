@@ -22,7 +22,7 @@ const CheckIcon = styled.div`
 `
 const CheckJigsawRight =styled.div`
       position:absolute;
-      left:-11px;
+      left:-10px;
       width:10px;
       height:20px;
       border-radius: 10px 0px 0px 10px;
