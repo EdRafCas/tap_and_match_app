@@ -4,9 +4,12 @@ import RightJigsaw from './RightJigsaw';
 import AnimationCheck from './AnimationCheck';
 import '../App.scss'
 import { CounterContext } from '../Context/CounterContext';
+import {ReactComponent as IconLikeColor} from '../img/like_icon.svg'
+import {ReactComponent as IconLike} from '../img/like_icon_color.svg'
 
-const Columns = ({ShuffledList, ShuffledList2}) => {
+const Columns = ({ShuffledList, ShuffledList2, reset, countReset}) => {
       const {counterBar} =useContext(CounterContext);
+      const {changeCounterBar} =useContext(CounterContext);
       const {counterCompleted} =useContext(CounterContext);
       const [leftColumn, changeLeftColumn] = useState("left")
       const [rightColumn, changeRightColumn] = useState("right")
@@ -37,7 +40,7 @@ const Columns = ({ShuffledList, ShuffledList2}) => {
       }
           
       
-      },[leftColumn,rightColumn,])
+      },[leftColumn,rightColumn,ShuffledList])
 
 
       
@@ -46,9 +49,13 @@ const Columns = ({ShuffledList, ShuffledList2}) => {
             <div className='container' >
                   <div className='progressBar' >
                         <div className='smallDivsContainer'>
-
+                              {Array.from({length:counterBar},(_,index)=>{
+                                    return(
+                                          <div key={index}>{index}</div>
+                                    )
+                              })}
                         </div>
-                        <div className='trackContainer'>{counterBar}</div>
+                        <div className='trackContainer'>{counterBar+"/20"}</div>
                   </div>
                   <div className='column-container'>
                         <div className='inner-container first-column'>
@@ -84,7 +91,22 @@ const Columns = ({ShuffledList, ShuffledList2}) => {
                               </>
                         </div>
                   </div>
-                  <div className='progressCounter' ><span>{countCompleted +" "}♥</span></div>  
+                  <div className='progressCounter' >
+                        <span>{countCompleted +"  "}</span>
+                        {countCompleted>0? 
+                        <IconLike/>
+                        :<IconLikeColor/>}
+                        
+                  </div> 
+                  <div className='button-container'>
+                        {countCompleted !==5  || counterBar >= 20 ?
+                        <button disabled={true} >Continue</button>
+                        :
+                        <button onClick={()=>changeCounterBar(counterBar+1)}>Continue</button>
+                        }
+
+
+                  </div> 
             </div>
        );
 }

@@ -1,4 +1,4 @@
-import React,{useContext, useState} from 'react';
+import React,{useContext, useState, useEffect} from 'react';
 import LeftJigSaw from './Components/LeftJigSaw';
 import Columns from './Components/Columns'
 import './App.css';
@@ -9,7 +9,6 @@ import {CounterContextProvider, CounterContext} from './Context/CounterContext';
 
 
 const App = () => {
-
   const WordList = [
     {
       id:1,
@@ -42,21 +41,38 @@ const App = () => {
       completed:false
     }
   ]
+   const [reset, countReset] = useState(0)
 
-  var ShuffledList = [...WordList]
-  var ShuffledList = ShuffledList.sort((a, b)=> 0.5 - Math.random());
-  var ShuffledList2 = [...WordList]
-  var ShuffledList2 = ShuffledList2.sort((a, b)=> 0.5 - Math.random());
-  console.log(WordList)
-  console.log(ShuffledList)
   
+/*   const [ShuffledList, changeShuffledList] = useState([...WordList])
+  const [ShuffledList2, changeShuffledList2] = useState([...WordList]) */
+
+
+    var ShuffledList = [...WordList]
+    var ShuffledList = ShuffledList.sort((a, b)=> 0.5 - Math.random());
+    var ShuffledList2 = [...WordList]
+    var ShuffledList2 = ShuffledList2.sort((a, b)=> 0.5 - Math.random());
+    console.log(WordList)
+    console.log(ShuffledList)
+
+  useEffect(()=>{
+    /* changeShuffledList(ShuffledList.sort((a, b)=> 0.5 - Math.random()))
+    changeShuffledList2(ShuffledList2.sort((a, b)=> 0.5 - Math.random())) */
+    
+    
+
+  }, [reset])
+
+
 
   return ( 
     <CounterContextProvider>
       
         <Columns
           ShuffledList={ShuffledList}
-          ShuffledList2={ShuffledList2}/>
+          ShuffledList2={ShuffledList2}
+          reset={reset}
+          countReset={countReset}/>
       
     </CounterContextProvider>
    );
