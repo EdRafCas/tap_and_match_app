@@ -7,7 +7,7 @@ import { CounterContext } from '../Context/CounterContext';
 import {ReactComponent as IconLikeColor} from '../img/like_icon.svg'
 import {ReactComponent as IconLike} from '../img/like_icon_color.svg'
 
-const Columns = ({ShuffledList, ShuffledList2,changeShuffledList, changeShuffledList2, reset, countReset}) => {
+const Columns = ({ShuffledList, ShuffledList2, reset, countReset}) => {
       const {counterBar} =useContext(CounterContext);
       const {changeCounterBar} =useContext(CounterContext);
       const [leftColumn, changeLeftColumn] = useState("left")
@@ -16,24 +16,35 @@ const Columns = ({ShuffledList, ShuffledList2,changeShuffledList, changeShuffled
       const [existingShuffledList2, changeExistingShuffledList2] = useState(ShuffledList2)
       const [animationFunction, changeAnimationFunction] = useState(false)
       
-      const [reset2, countReset2] = useState(0)
 
       let countCompleted = existingShuffledList.filter(x => x.completed === true).length;
 
 
       useEffect(()=>{
+           
+            /* 
+            console.log("columna izquierda=> "+leftColumn.id)
+            console.log("columna derecha=> "+rightColumn.id) */
+            if(leftColumn.id === rightColumn.id && leftColumn.id !== undefined && rightColumn.id !== undefined){
 
-      if(leftColumn.id === rightColumn.id && leftColumn.id !== undefined &&      rightColumn.id !== undefined){
+            /* console.log("they match") */
 
             const updateexistingShuffledList = existingShuffledList.map((listed)=>listed.id === leftColumn.id ? {...listed, completed:true}: listed)
 
             const updateexistingShuffledList2 = existingShuffledList2.map((listed)=>listed.id === rightColumn.id ? {...listed, completed:true}: listed)
-
+            /* 
+            console.log("columna izquierda=> "+leftColumn.completed)
+            console.log("starting updating left shuffle") 
+            */
             changeExistingShuffledList(updateexistingShuffledList)
             changeExistingShuffledList2(updateexistingShuffledList2)
+            /* 
+            console.log("finished updating left shuffle")
+            console.log("columna izquierda=> "+leftColumn.completed) 
+            */
 
-            }
-          /* console.log("reset value=>"+reset) */
+      }
+          
       
       },[leftColumn,rightColumn,ShuffledList, reset, countReset])
 

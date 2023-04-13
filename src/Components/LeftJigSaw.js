@@ -8,10 +8,10 @@ const LeftJigSaw = ({item, leftColumn, rightColumn, changeLeftColumn,existingShu
 
       useEffect(()=>{
             if(leftColumn.id === rightColumn.id && leftColumn.id !== undefined){
-                  console.log("this is meant to trigger something in left side")
+                  /* console.log("this is meant to trigger something in left side") */
 
             }else{
-                  console.log("they dont match")
+                  /* console.log("they dont match") */
             }
           
       },[leftColumn,rightColumn, changeLeftColumn, item, changeExistingShuffledList, existingShuffledList])
@@ -31,11 +31,6 @@ const LeftJigSaw = ({item, leftColumn, rightColumn, changeLeftColumn,existingShu
       <div className={leftBlock} key={item.index} onClick={handleChange}>
             <div className='left-jigsaw'></div>
             <span>{item.id}, {item.english}</span>
-            {/* {(leftColumn.id === rightColumn.id && leftColumn.id === item.id && leftColumn.id !== undefined)?
-            <div>
-                  <span>{item.completed}</span>
-            </div>:
-            ""} */}
             {item.completed?
             <AnimationCheck item={item}/>:
             ""}

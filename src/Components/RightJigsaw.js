@@ -7,10 +7,9 @@ const RightJigsaw = ({item, leftColumn, rightColumn, changeRightColumn,existingS
 
       useEffect(()=>{
             if(leftColumn.id === rightColumn.id && rightColumn.id !== undefined){
-                  console.log("this is meant to trigger something in right side")
-
+                  /* console.log("this is meant to trigger something in right side") */
             }else{
-                  console.log("they dont match")
+                  /* console.log("they dont match") */
             }
 
       },[leftColumn,rightColumn, item, existingShuffledList2, changeExistingShuffledList2])
@@ -27,11 +26,6 @@ const RightJigsaw = ({item, leftColumn, rightColumn, changeRightColumn,existingS
       <div className={rightBlock} key={item.index} onClick={handleChange}>
             <div className='right-jigsaw'></div>
             <span>{item.id}, {item.spanish}</span>
-            {/* {(leftColumn.id === rightColumn.id && leftColumn.id === item.id && leftColumn.id !== undefined)?
-            <div>
-                  <span>match</span>
-            </div>:
-            ""} */}
             {item.completed?
             <AnimationCheck item={item} rightside/>:
             ""}
