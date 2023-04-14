@@ -82,7 +82,7 @@ const AnimationCheck= ({item, rightside}) => {
                         setTimeout(()=>{
                               changeLoadGif(false)
                               console.log("animation timeout")
-                        }, 1500)
+                        }, 1000)
                   } else{
                   } 
             }

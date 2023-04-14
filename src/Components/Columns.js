@@ -6,41 +6,58 @@ import '../App.scss'
 import { CounterContext } from '../Context/CounterContext';
 import {ReactComponent as IconLikeColor} from '../img/like_icon.svg'
 import {ReactComponent as IconLike} from '../img/like_icon_color.svg'
+import LeftColumn from './LeftColumn';
+import RightColumn from './RightColumn';
 
-const Columns = ({ShuffledList, ShuffledList2,changeShuffledList, changeShuffledList2, reset, countReset}) => {
+const Columns = ({WordList, ShuffledList, ShuffledList2,changeShuffledList, changeShuffledList2, reset, countReset}) => {
       const {counterBar} =useContext(CounterContext);
       const {changeCounterBar} =useContext(CounterContext);
-      const [leftColumn, changeLeftColumn] = useState("left")
-      const [rightColumn, changeRightColumn] = useState("right")
-      const [existingShuffledList, changeExistingShuffledList] = useState(ShuffledList)
-      const [existingShuffledList2, changeExistingShuffledList2] = useState(ShuffledList2)
-      const [animationFunction, changeAnimationFunction] = useState(false)
+      const {leftColumn} =useContext(CounterContext);
+      const {rightColumn} =useContext(CounterContext);
+      const {changeLeftColumn} =useContext(CounterContext);
+      const {changeRightColumn} =useContext(CounterContext);
+      const [existingShuffledList, changeExistingShuffledList] = useState([...WordList])
+      const [existingShuffledList2, changeExistingShuffledList2] = useState([...WordList])
+      const [loader, changeLoader] = useState(true)
       
-      const [reset2, countReset2] = useState(0)
-
       let countCompleted = existingShuffledList.filter(x => x.completed === true).length;
 
 
       useEffect(()=>{
+            const setShuffle = async() =>{
+                  console.log("check")
+                  const newList1 = [].concat(existingShuffledList)
+                  changeExistingShuffledList(newList1.sort((a, b)=> 0.5 - Math.random()))
+                  changeExistingShuffledList2(existingShuffledList2.sort((a, b)=> 0.5 - Math.random()))
+                  console.log(existingShuffledList)
+            
+            }
+            changeLoader(false)
 
-      if(leftColumn.id === rightColumn.id && leftColumn.id !== undefined &&      rightColumn.id !== undefined){
+            setShuffle();
 
-            const updateexistingShuffledList = existingShuffledList.map((listed)=>listed.id === leftColumn.id ? {...listed, completed:true}: listed)
+       if(leftColumn.id === rightColumn.id && leftColumn.id !== undefined &&      rightColumn.id !== undefined){
+            console.log("match")
+
+            /* const updateexistingShuffledList = existingShuffledList.map((listed)=>listed.id === leftColumn.id ? {...listed, completed:true}: listed)
 
             const updateexistingShuffledList2 = existingShuffledList2.map((listed)=>listed.id === rightColumn.id ? {...listed, completed:true}: listed)
 
             changeExistingShuffledList(updateexistingShuffledList)
-            changeExistingShuffledList2(updateexistingShuffledList2)
-
-            }
-          /* console.log("reset value=>"+reset) */
+            changeExistingShuffledList2(updateexistingShuffledList2) */
+      } else{
+            console.log("dont match")
+      }
       
-      },[leftColumn,rightColumn,ShuffledList, reset, countReset])
+      },[reset, countReset])
 
 
       
 
-      return (   
+      return (  
+      <>
+            {!loader? 
+            <>
             <div className='container' >
                   <div className='progressBar' >
                         <div className='smallDivsContainer'>
@@ -53,38 +70,18 @@ const Columns = ({ShuffledList, ShuffledList2,changeShuffledList, changeShuffled
                         <div className='trackContainer'>{counterBar+"/20"}</div>
                   </div>
                   <div className='column-container'>
-                        <div className='inner-container first-column'>
-                              <>
-                              {existingShuffledList.map((item, index)=>{
-                                    return(
-                                          <LeftJigSaw key={item.index}
-                                                      item={item}
-                                                      ShuffledList={ShuffledList}
-                                                      leftColumn={leftColumn}
-                                                      rightColumn={rightColumn}
-                                                      changeLeftColumn={changeLeftColumn}
-                                                      existingShuffledList={existingShuffledList}
-                                                      changeExistingShuffledList={changeExistingShuffledList}/>
-                              )})}
-                              </>
-                        </div>
-                        <div className='inner-container second-column'>
-                              <>
-                              {existingShuffledList2.map((item, index)=>{
-                                    return(
-                                          <RightJigsaw key={item.index}
-                                                      item={item}
-                                                      ShuffledList2={ShuffledList2}
-                                                      leftColumn={leftColumn}
-                                                      rightColumn={rightColumn}
-                                                      changeRightColumn={changeRightColumn}
-                                                      existingShuffledList2={existingShuffledList2}
-                                                      changeExistingShuffledList2={changeExistingShuffledList2}
-                                                      />
-
-                              )})}
-                              </>
-                        </div>
+                        <LeftColumn 
+                              existingShuffledList={existingShuffledList}
+                              leftColumn={leftColumn}
+                              rightColumn={rightColumn}
+                              changeLeftColumn={changeLeftColumn}
+                              changeExistingShuffledList={changeExistingShuffledList}/>
+                        <RightColumn
+                              existingShuffledList2={existingShuffledList2}
+                              leftColumn={leftColumn}
+                              rightColumn={rightColumn}
+                              changeRightColumn={changeRightColumn}
+                              changeExistingShuffledList2={changeExistingShuffledList2}/>
                   </div>
                   <div className='progressCounter' >
                         <span>{countCompleted +"  "}</span>
@@ -104,6 +101,10 @@ const Columns = ({ShuffledList, ShuffledList2,changeShuffledList, changeShuffled
 
                   </div>
             </div>
+            </>
+            :
+            ""}
+      </>
        );
 }
  

@@ -42,11 +42,11 @@ const App = () => {
     }
   ]
    const [reset, countReset] = useState(0)
-   const [loader, changeLoader] = useState(true)
+   
 
   
-  const [ShuffledList, changeShuffledList] = useState([...WordList])
-  const [ShuffledList2, changeShuffledList2] = useState([...WordList])
+  /* const [ShuffledList, changeShuffledList] = useState([...WordList])
+  const [ShuffledList2, changeShuffledList2] = useState([...WordList]) */
 
 
 /*     var ShuffledList = [...WordList]
@@ -59,39 +59,31 @@ const App = () => {
 
   useEffect(()=>{
 
-    const setShuffle = async() =>{
-
-    changeShuffledList(ShuffledList.sort((a, b)=> 0.5 - Math.random()))
-    changeShuffledList2(ShuffledList2.sort((a, b)=> 0.5 - Math.random()))
-
-    console.log("check")
-    changeLoader(false)
-    }
-
-    setShuffle();
-    
-    console.log("this is meant to reset")
-    
     
 
-  }, [reset,ShuffledList])
+   /*  changeShuffledList(ShuffledList.sort((a, b)=> 0.5 - Math.random()))
+    changeShuffledList2(ShuffledList2.sort((a, b)=> 0.5 - Math.random())) */
+
+    
+
+  }, [])
 
 
 
   return ( 
     <CounterContextProvider>
-      {!loader?
+      
         <div>
           <Columns
-          ShuffledList={ShuffledList}
+          WordList={WordList}
+          /* ShuffledList={ShuffledList}
           ShuffledList2={ShuffledList2}
           changeShuffledList={changeShuffledList}
-          changeShuffledList2={changeShuffledList2}
+          changeShuffledList2={changeShuffledList2} */
           reset={reset}
           countReset={countReset}/>
         </div>
-      :
-      ""}
+     
         
       
     </CounterContextProvider>

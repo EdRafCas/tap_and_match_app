@@ -7,7 +7,7 @@ const RightJigsaw = ({item, leftColumn, rightColumn, changeRightColumn,existingS
 
       useEffect(()=>{
             if(leftColumn.id === rightColumn.id && rightColumn.id !== undefined){
-                  /* console.log("this is meant to trigger something in right side") */
+                  console.log("this is meant to trigger something in right side")
             }else{
                   /* console.log("they dont match") */
             }
