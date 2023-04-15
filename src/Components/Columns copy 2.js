@@ -26,11 +26,10 @@ const Columns = ({WordList, ShuffledList, ShuffledList2,changeShuffledList, chan
       useEffect(()=>{
             const setShuffle = async() =>{
                   console.log("check")
-                  const slicedArray = WordList.slice(0, 5);
-                  const newList1 = [].concat([...slicedArray])
+
+                  const newList1 = [].concat([...WordList])
                   changeExistingShuffledList(newList1.sort((a, b)=> 0.5 - Math.random()))
-                  
-                  const newList2 = [].concat([...slicedArray])
+                  const newList2 = [].concat([...WordList])
                   changeExistingShuffledList2(newList2.sort((a, b)=> 0.5 - Math.random()))
                   console.log(rightColumn)
                   changeLeftColumn("")
