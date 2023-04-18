@@ -35,26 +35,28 @@
             box-sizing: border-box;
             width:100%;
             max-width:750px;
-            .smallDivsContainer{
-                  width:90%;
-                  /* border:1px blue solid; */
-                  display:flex;
-                  flex-direction:row;
-                  gap:1px;
-                  justify-content: flex-start;
-                  align-items:center;
-                  
-                  div{
-                  width:4.5%;
-                  height:5px;
-                  border:1px green solid;
-                  background-color:green;
-                  border-radius:8px;
+            align-items:center;
+                  .smallDivsContainer{
+                              width:90%;
+                              /* border:1px blue solid; */
+                              display:flex;
+                              flex-direction:row;
+                              height:7px;
+                              border-radius:8px; 
+                              gap:1px;
+                              justify-content: flex-start;
+                              align-items:center;
+                              background-color:hsl(233, 11%, 84%);;
 
-                        
+                              div{
+                                    width:9.5%;
+                                    height:5px;
+                                    border:1px green solid;
+                                    background-color:green;
+                                    border-radius:8px;       
+                              }   
                   }
-                  
-            }
+            
             .trackContainer{
                   display:flex;
                   flex-direction:row;

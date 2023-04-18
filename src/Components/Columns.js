@@ -26,13 +26,24 @@ const Columns = ({WordList, ShuffledList, ShuffledList2,changeShuffledList, chan
       useEffect(()=>{
             const setShuffle = async() =>{
                   console.log("check")
-                  const slicedArray = WordList.slice(0, 5);
-                  const newList1 = [].concat([...slicedArray])
-                  changeExistingShuffledList(newList1.sort((a, b)=> 0.5 - Math.random()))
-                  
-                  const newList2 = [].concat([...slicedArray])
-                  changeExistingShuffledList2(newList2.sort((a, b)=> 0.5 - Math.random()))
-                  console.log(rightColumn)
+                  if(counterBar <= 0){
+                        const slicedArray = WordList.slice(counterBar, counterBar+5);
+                        const newList1 = [].concat([...slicedArray])
+                        changeExistingShuffledList(newList1.sort((a, b)=> 0.5 - Math.random()))
+                        
+                        const newList2 = [].concat([...slicedArray])
+                        changeExistingShuffledList2(newList2.sort((a, b)=> 0.5 - Math.random()))
+                        console.log(rightColumn)
+                  } else{
+                        const slicedArray = WordList.slice(counterBar*5, (counterBar*5)+5);
+                        const newList1 = [].concat([...slicedArray])
+                        changeExistingShuffledList(newList1.sort((a, b)=> 0.5 - Math.random()))
+                        
+                        const newList2 = [].concat([...slicedArray])
+                        changeExistingShuffledList2(newList2.sort((a, b)=> 0.5 - Math.random()))
+                        console.log(rightColumn)
+                        
+                  }
                   changeLeftColumn("")
                   changeRightColumn("")
             
@@ -73,7 +84,7 @@ const Columns = ({WordList, ShuffledList, ShuffledList2,changeShuffledList, chan
                                     )
                               })}
                         </div>
-                        <div className='trackContainer'>{counterBar+"/20"}</div>
+                        <div className='trackContainer'>{counterBar+"/10"}</div>
                   </div>
                   <div className='column-container'>
                         <LeftColumn 
