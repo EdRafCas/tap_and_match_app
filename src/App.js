@@ -307,10 +307,9 @@ const App = () => {
     {
       id:50,
       english:"Bicycle",
-      spanish:"Bicileta",
+      spanish:"Bicicleta",
       completed:false
     }
-
   ]
    const [reset, countReset] = useState(0)
    

@@ -1,13 +1,36 @@
 import React,{useState, useEffect, useContext} from 'react';
-import LeftJigSaw from './LeftJigSaw';
-import RightJigsaw from './RightJigsaw';
-import AnimationCheck from './AnimationCheck';
 import '../App.scss'
 import { CounterContext } from '../Context/CounterContext';
 import {ReactComponent as IconLikeColor} from '../img/like_icon.svg'
 import {ReactComponent as IconLike} from '../img/like_icon_color.svg'
 import LeftColumn from './LeftColumn';
 import RightColumn from './RightColumn';
+import styled from 'styled-components';
+import Heart from './../img/Heart_icon.png'
+import Flag from './../img/flag_icon.png'
+
+const IconContainer=styled.div`
+      display:flex;
+      flex-direction:row;
+      justify-content:flex-end;
+      gap:0.5em;
+      height:1rem;
+      padding-right:0rem;
+      padding-left:0rem;
+      z-index:1;
+`
+const Icons=styled.div`
+      /* border:1px solid white; */
+      svg{
+            height:100%;
+            max-height:3rem;
+            width:auto;
+            min-width:1rem;
+            @media(max-width: 375px){ 
+                  max-height:1rem;}
+      }
+`
+
 
 const Columns = ({WordList, ShuffledList, ShuffledList2,changeShuffledList, changeShuffledList2, reset, countReset}) => {
       const {counterBar} =useContext(CounterContext);
@@ -84,7 +107,26 @@ const Columns = ({WordList, ShuffledList, ShuffledList2,changeShuffledList, chan
                                     )
                               })}
                         </div>
-                        <div className='trackContainer'>{counterBar+"/10"}</div>
+                        <div className='trackContainer'>
+                              <div className='trackInner'>
+                              <IconContainer>
+                                    <Icons><img  src={Flag} alt ={'Flag icon'}/></Icons>
+                              </IconContainer>
+                              <span>{counterBar+"/10"}</span>
+                              </div>
+                              <div className='trackInner'>
+                              <IconContainer>
+                                    <Icons><img  src={Heart} alt ={'Hearts left'}/></Icons>
+                              </IconContainer>
+                              <IconContainer>
+                                    <Icons><img  src={Heart} alt ={'Hearts left'}/></Icons>
+                              </IconContainer>
+                              <IconContainer>
+                                    <Icons><img  src={Heart} alt ={'Hearts left'}/></Icons>
+                              </IconContainer>
+                              </div>
+                        </div>
+                        
                   </div>
                   <div className='column-container'>
                         <LeftColumn 
@@ -107,11 +149,12 @@ const Columns = ({WordList, ShuffledList, ShuffledList2,changeShuffledList, chan
                         :<IconLikeColor/>}                    
                   </div> 
                   <div className='button-container'>
-                        {countCompleted !==5  || counterBar >= 20 ?
+                        {/* {countCompleted !==5  || counterBar >= 20 ?
                         <button disabled={true} >Continue</button>
                         :
                         <button onClick={()=>{changeCounterBar(counterBar+1);countReset(reset+1)}}>Continue</button>
-                        }
+                        } */}
+                        <button onClick={()=>{changeCounterBar(counterBar+1);countReset(reset+1)}}>Continue</button>
                   </div> 
                   {/* <div className='button-container'>
                   <button onClick={()=>countReset(reset+1)}>reset</button>

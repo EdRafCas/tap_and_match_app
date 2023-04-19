@@ -30,6 +30,8 @@
             flex-direction:row;
             border:1px blue solid;
             width:100%;
+            height:50px;
+            gap:1px;
            /*  max-width:750px; */
             padding:5px;
             box-sizing: border-box;
@@ -43,13 +45,13 @@
                               flex-direction:row;
                               height:7px;
                               border-radius:8px; 
-                              gap:1px;
+                              gap:1%;
                               justify-content: flex-start;
                               align-items:center;
+                              /*   n */
                               background-color:hsl(233, 11%, 84%);;
-
                               div{
-                                    width:9.5%;
+                                    width:8.9%;
                                     height:5px;
                                     border:1px green solid;
                                     background-color:green;
@@ -59,10 +61,20 @@
             
             .trackContainer{
                   display:flex;
-                  flex-direction:row;
+                  flex-direction:column;
                   justify-content: center;
                   width:10%;
                   border:1px blue solid;
+                  div{
+                        display:flex;
+                        justify-content: center;
+                  }
+                  .trackInner{
+                        display:flex;
+                        justify-content: flex-start;
+                        border:1px blue solid;
+                        gap:1px;
+                  }
             }
 
       }
@@ -212,6 +224,30 @@
 
       .item-container{
             width:150px;
+            span{
+                  font-size:0.8rem;
+            }
+      }
+      .container{
+
+            .progressBar{
+      
+                  .smallDivsContainer{
+                        width:80%;
+                  }
+                  .trackContainer{
+                        justify-content: center;
+                        width:20%;
+                        div{
+                              font-size:0.8rem;
+                        }
+                        .trackInner{
+                              display:flex;
+                              justify-content: center;
+                        }
+                  }
+
+            }
       }
 
 }

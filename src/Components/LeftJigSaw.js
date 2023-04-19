@@ -4,6 +4,7 @@ import '../Components/AnimationCheck'
 import AnimationCheck from '../Components/AnimationCheck';
 
 
+
 const LeftJigSaw = ({item, leftColumn, rightColumn, changeLeftColumn,existingShuffledList, changeExistingShuffledList}) => {
 
       useEffect(()=>{
