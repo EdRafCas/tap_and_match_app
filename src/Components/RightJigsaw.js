@@ -1,15 +1,24 @@
-import React,{useState, useEffect} from 'react';
+import React,{useState, useEffect, useContext} from 'react';
 import '../App.scss'
 import '../Components/AnimationCheck'
 import AnimationCheck from '../Components/AnimationCheck';
+import AnimationWrong from './AnimationWrong';
 
 const RightJigsaw = ({item, leftColumn, rightColumn, changeRightColumn,existingShuffledList2, changeExistingShuffledList2}) => {
+      const [play, changePlay] = useState(false)
+      const [playWrong, changePlayWrong] = useState(false)
+
 
       useEffect(()=>{
-            if(leftColumn.id === rightColumn.id && rightColumn.id !== undefined){
-                 /*  console.log("this is meant to trigger something in right side") */
-            }else{
-                  /* console.log("they dont match") */
+            if(rightColumn.id === item.id && leftColumn.id === rightColumn.id && leftColumn.id !== undefined && rightColumn.id !== undefined){
+                  console.log("they match")
+                  changePlay(true)
+                  changeRightColumn("")
+            } if(rightColumn.id === item.id && leftColumn.id !== rightColumn.id && leftColumn.id !== undefined && rightColumn.id !== "" && rightColumn.id !== ""){
+                  changePlayWrong(true)
+                  console.log("picked but dont match")
+                  changeRightColumn("")
+
             }
 
       },[leftColumn,rightColumn, item, existingShuffledList2, changeExistingShuffledList2])
@@ -27,7 +36,12 @@ const RightJigsaw = ({item, leftColumn, rightColumn, changeRightColumn,existingS
             <div className='right-jigsaw'></div>
             <span>{item.id}, {item.spanish}</span>
             {item.completed?
-            <AnimationCheck item={item} rightside/>:
+            <AnimationCheck item={item} rightColumn={rightColumn} rightside/>
+            :
+            ""}
+            {playWrong?
+            <AnimationWrong item={item} rightColumn={rightColumn} rightside/>
+            :
             ""}
       </div>
        );

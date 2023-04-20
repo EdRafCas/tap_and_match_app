@@ -1,7 +1,6 @@
 import React,{useEffect, useState} from 'react';
 import '../App.scss'
-import MatchGif from '../img/CheckMarkOnce.gif'
-import WrongGif from '../img/heart_icon_2.png'
+import WrongGif from '../img/XMARK.gif'
 import styled from 'styled-components';
 
 
@@ -89,19 +88,18 @@ const CheckInner =styled.div`
 
 `
 
-const AnimationCheck= ({item, rightColumn, rightside}) => {
-      const [loadGif, changeLoadGif] = useState(false)
+const AnimationWrong= ({item, rightside}) => {
       const [wronGif, changeWrongGif] = useState(false)
       const [loadingComponent, changeLoadingComponent] =useState(true)
 
       useEffect(()=>{
             const checkLoad = ()=>{
-                  if(item.completed === true ){
-                        changeLoadGif(true)
-                        console.log(loadGif)
+                  if(item.completed === false){
+                        changeWrongGif(true)
+                        console.log(wronGif)
                         setTimeout(()=>{
-                              changeLoadGif(false)
-                              console.log("animation timeout")
+                              changeWrongGif(false)
+                              console.log("wrong timeout")
                         }, 1500)
                   } else{
                   } 
@@ -111,12 +109,9 @@ const AnimationCheck= ({item, rightColumn, rightside}) => {
       
       },[item])
 
-      const checkContainer = loadGif? (
-            <img src={MatchGif} alt={"Completed"}/>
-      ) : ("meh");
 
       const wrongContainer = wronGif? (
-            <img src={MatchGif} alt={"Completed"}/>
+            <img src={WrongGif} alt={"Completed"}/>
       ) : ("meh");
 
       
@@ -126,33 +121,22 @@ const AnimationCheck= ({item, rightColumn, rightside}) => {
             <>
             {!loadingComponent?
             <>
-                  {loadGif?
+                  {wronGif?
                   <>
                         {rightside?
                         <CheckIcon className='check_container'>
                               <CheckJigsawRight/>
-                              {checkContainer}
+                              {wrongContainer}
                         </CheckIcon>
                         :
                         <CheckIcon className='check_container'>
                               <CheckJigsawLeft/>
-                              {checkContainer}
+                              {wrongContainer}
                         </CheckIcon>
                         }
                   </>
                   :
-                  <OverlayContainer onClick={(e)=>{e.stopPropagation();e.preventDefault();}}>
-                        {rightside?
-                        <>
-                        <span>{item.id}, {item.spanish}</span>
-                        <div className='right-inner-jigsaw completed'></div>
-                        </>
-                        :
-                        <>
-                        <span>{item.id}, {item.english}</span>
-                        <div className='left-inner-jigsaw left-jigsaw completed' ></div>
-                        </>}
-                  </OverlayContainer>
+                  ""
                   }
             </>
             :""}
@@ -160,4 +144,4 @@ const AnimationCheck= ({item, rightColumn, rightside}) => {
        );
 }
  
-export default AnimationCheck;
+export default AnimationWrong;

@@ -8,11 +8,11 @@ import {ReactComponent as IconLikeColor} from '../img/like_icon.svg'
 import {ReactComponent as IconLike} from '../img/like_icon_color.svg'
 
 const LeftColumn = ({existingShuffledList,ShuffledList,leftColumn,rightColumn,changeLeftColumn,changeExistingShuffledList}) => {
-      const {counterBar} =useContext(CounterContext);
+      /* const {counterBar} =useContext(CounterContext);
       const {changeCounterBar} =useContext(CounterContext);
       const [loader, changeLoader] = useState(true)
       
-      let countCompleted = existingShuffledList.filter(x => x.completed === true).length;
+      let countCompleted = existingShuffledList.filter(x => x.completed === true).length; */
 
 
       useEffect(()=>{

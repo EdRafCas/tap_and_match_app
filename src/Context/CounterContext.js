@@ -4,8 +4,11 @@ const CounterContext= React.createContext();
 
 const CounterContextProvider = ({children}) => {
       const [counterBar, changeCounterBar] = useState(0)
+      const [counterSkips, changeCounterSkips] = useState(3)
       const [counterCompleted, changeCounterCompleted] = useState(0)
       const [reload, changeReload] = useState (0)
+      const [leftColumn, changeLeftColumn] = useState("")
+      const [rightColumn, changeRightColumn] = useState("")
 /*       const [leftColumn, changeLeftColumn] = useState("left")
       const [rightColumn, changeRightColumn] = useState("right") */
 
@@ -19,6 +22,12 @@ const CounterContextProvider = ({children}) => {
                                     changeCounterCompleted:changeCounterCompleted,
                                     reload:reload,
                                     changeReload:changeReload,
+                                    changeCounterSkips:changeCounterSkips,
+                                    counterSkips:counterSkips,
+                                    changeLeftColumn:changeLeftColumn,
+                                    leftColumn:leftColumn,
+                                    changeRightColumn:changeRightColumn,
+                                    rightColumn:rightColumn
                                     }}>
                   {children}
             </CounterContext.Provider>
