@@ -1,7 +1,6 @@
 import React,{useEffect, useState} from 'react';
 import '../App.scss'
 import MatchGif from '../img/CheckMarkOnce.gif'
-import WrongGif from '../img/heart_icon_2.png'
 import styled from 'styled-components';
 
 
@@ -72,26 +71,9 @@ const OverlayContainer =styled.div`
 `
 
 
-const CheckInner =styled.div`
-      border-radius:50%;
-      border:1px blue solid;
-      display:flex;
-      flex-direction:center;
-      max-height:50px;
-      max-width:50px;
-      overflow:hidden;
 
-
-      img{
-            border:1px red solid;
-            border-radius:50%;
-            }
-
-`
-
-const AnimationCheck= ({item, rightColumn, rightside}) => {
+const AnimationCheck= ({item,rightside}) => {
       const [loadGif, changeLoadGif] = useState(false)
-      const [wronGif, changeWrongGif] = useState(false)
       const [loadingComponent, changeLoadingComponent] =useState(true)
 
       useEffect(()=>{
@@ -115,9 +97,6 @@ const AnimationCheck= ({item, rightColumn, rightside}) => {
             <img src={MatchGif} alt={"Completed"}/>
       ) : ("meh");
 
-      const wrongContainer = wronGif? (
-            <img src={MatchGif} alt={"Completed"}/>
-      ) : ("meh");
 
       
       
@@ -144,12 +123,12 @@ const AnimationCheck= ({item, rightColumn, rightside}) => {
                   <OverlayContainer onClick={(e)=>{e.stopPropagation();e.preventDefault();}}>
                         {rightside?
                         <>
-                        <span>{item.id}, {item.spanish}</span>
+                        <span>{/* {item.id},  */}{item.spanish}</span>
                         <div className='right-inner-jigsaw completed'></div>
                         </>
                         :
                         <>
-                        <span>{item.id}, {item.english}</span>
+                        <span>{/* {item.id},  */}{item.english}</span>
                         <div className='left-inner-jigsaw left-jigsaw completed' ></div>
                         </>}
                   </OverlayContainer>

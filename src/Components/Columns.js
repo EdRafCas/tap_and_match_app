@@ -8,6 +8,7 @@ import RightColumn from './RightColumn';
 import styled from 'styled-components';
 import Heart from './../img/Heart_icon.png'
 import Flag from './../img/flag_icon.png'
+import GameOver from './../img/game_over.png'
 
 const IconContainer=styled.div`
       display:flex;
@@ -32,7 +33,7 @@ const Icons=styled.div`
 `
 
 
-const Columns = ({WordList, ShuffledList, ShuffledList2,changeShuffledList, changeShuffledList2, reset, countReset}) => {
+const Columns = ({WordList,reset, countReset}) => {
       const {counterBar} =useContext(CounterContext);
       const {changeCounterBar} =useContext(CounterContext);
       const {counterSkips} =useContext(CounterContext);
@@ -45,7 +46,6 @@ const Columns = ({WordList, ShuffledList, ShuffledList2,changeShuffledList, chan
 
       const [existingShuffledList, changeExistingShuffledList] = useState([{}])
       const [existingShuffledList2, changeExistingShuffledList2] = useState([{}])
-      const [fiveForLoad, changeFiveForLoad] = useState([{}])
 
       const [loader, changeLoader] = useState(true)
       
@@ -57,8 +57,6 @@ const Columns = ({WordList, ShuffledList, ShuffledList2,changeShuffledList, chan
                   console.log("check")
                  
                   if(counterBar <= 0){
-                        changeLeftColumn("")
-                        changeRightColumn("")
                         const slicedArray = WordList.slice(counterBar, counterBar+5);
                         const newList1 = [].concat([...slicedArray])
                         changeExistingShuffledList(newList1.sort((a, b)=> 0.5 - Math.random()))
@@ -67,8 +65,6 @@ const Columns = ({WordList, ShuffledList, ShuffledList2,changeShuffledList, chan
                         changeExistingShuffledList2(newList2.sort((a, b)=> 0.5 - Math.random()))
                         console.log(rightColumn)
                   } else{
-                        changeLeftColumn("")
-                        changeRightColumn("")
                         const slicedArray = WordList.slice(counterBar*5, (counterBar*5)+5);
                         const newList1 = [].concat([...slicedArray])
                         changeExistingShuffledList(newList1.sort((a, b)=> 0.5 - Math.random()))
@@ -85,20 +81,7 @@ const Columns = ({WordList, ShuffledList, ShuffledList2,changeShuffledList, chan
             changeLoader(false)
 
             setShuffle();
-            /* 
-            if(leftColumn.id === rightColumn.id && leftColumn.id !== undefined &&      rightColumn.id !== undefined){
-                  console.log("match")
 
-                  const updateexistingShuffledList = existingShuffledList.map((listed)=>listed.id === leftColumn.id ? {...listed, completed:true}: listed)
-
-                  const updateexistingShuffledList2 = existingShuffledList2.map((listed)=>listed.id === rightColumn.id ? {...listed, completed:true}: listed)
-
-                  changeExistingShuffledList(updateexistingShuffledList)
-                  changeExistingShuffledList2(updateexistingShuffledList2)
-            } else{
-                  console.log("dont match")
-            } 
-            */
       
       },[reset, countReset, changeLeftColumn, changeRightColumn])
 
@@ -146,6 +129,8 @@ const Columns = ({WordList, ShuffledList, ShuffledList2,changeShuffledList, chan
                         
                   </div>
                   <div className='column-container'>
+                        {counterBar <10?
+                        <>
                         <LeftColumn 
                               existingShuffledList={existingShuffledList}
                               leftColumn={leftColumn}
@@ -158,6 +143,16 @@ const Columns = ({WordList, ShuffledList, ShuffledList2,changeShuffledList, chan
                               rightColumn={rightColumn}
                               changeRightColumn={changeRightColumn}
                               changeExistingShuffledList2={changeExistingShuffledList2}/>
+                        </>
+                        :
+                        <div className='inner-container'>
+                              <img  src={GameOver} alt ={'Game over'}/>
+                              <div className='button-container'>
+
+                              <button onClick={()=>{changeCounterBar(0);countReset(reset+1)}}>Play Again</button>
+                              </div>
+                        </div>
+                        }
                   </div>
                   <div className='progressCounter' >
                         <span>{countCompleted +"  "}</span>
@@ -166,10 +161,11 @@ const Columns = ({WordList, ShuffledList, ShuffledList2,changeShuffledList, chan
                         :<IconLikeColor/>}                    
                   </div> 
                   <div className='button-container'>
-                        {counterSkips > 0?
-                        <button  onClick={()=>{changeCounterBar(counterBar+1);countReset(reset+1);changeCounterSkips(counterSkips-1)}}>Skip This one</button>
-                        :
+                        {counterSkips === 0 || counterBar > 8?
                         <button disabled={true}>Skip This one</button>
+                        : 
+                        <button  onClick={()=>{changeCounterBar(counterBar+1);countReset(reset+1);changeCounterSkips(counterSkips-1)}}>Skip This one</button>
+                        
                         }
                         {countCompleted !==5  || counterBar >= 10 ?
                         <button disabled={true} >Continue</button>
@@ -177,10 +173,6 @@ const Columns = ({WordList, ShuffledList, ShuffledList2,changeShuffledList, chan
                         <button onClick={()=>{changeCounterBar(counterBar+1);countReset(reset+1)}}>Continue</button>
                         }
                   </div> 
-                  {/* <div className='button-container'>
-                  <button onClick={()=>countReset(reset+1)}>reset</button>
-
-                  </div> */}
             </div>
             </>
             :

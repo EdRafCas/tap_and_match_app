@@ -88,19 +88,19 @@ const CheckInner =styled.div`
 
 `
 
-const AnimationWrong= ({item, rightside}) => {
+const AnimationWrong= ({item, rightColumn, rightside, playWrong2, changePlayWrong2, playWrong, changePlayWrong}) => {
       const [wronGif, changeWrongGif] = useState(false)
       const [loadingComponent, changeLoadingComponent] =useState(true)
 
       useEffect(()=>{
             const checkLoad = ()=>{
-                  if(item.completed === false){
+                  if(item.completed === false ){
                         changeWrongGif(true)
                         console.log(wronGif)
                         setTimeout(()=>{
                               changeWrongGif(false)
                               console.log("wrong timeout")
-                        }, 1500)
+                        }, 1000)
                   } else{
                   } 
             }
@@ -111,7 +111,7 @@ const AnimationWrong= ({item, rightside}) => {
 
 
       const wrongContainer = wronGif? (
-            <img src={WrongGif} alt={"Completed"}/>
+            <img src={WrongGif} alt={"error"}/>
       ) : ("meh");
 
       

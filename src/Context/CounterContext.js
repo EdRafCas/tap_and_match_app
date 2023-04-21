@@ -9,6 +9,7 @@ const CounterContextProvider = ({children}) => {
       const [reload, changeReload] = useState (0)
       const [leftColumn, changeLeftColumn] = useState("")
       const [rightColumn, changeRightColumn] = useState("")
+      const [playWrong, changePlayWrong] = useState("")
 /*       const [leftColumn, changeLeftColumn] = useState("left")
       const [rightColumn, changeRightColumn] = useState("right") */
 
@@ -27,7 +28,9 @@ const CounterContextProvider = ({children}) => {
                                     changeLeftColumn:changeLeftColumn,
                                     leftColumn:leftColumn,
                                     changeRightColumn:changeRightColumn,
-                                    rightColumn:rightColumn
+                                    rightColumn:rightColumn,
+                                    playWrong:playWrong,
+                                    changePlayWrong: changePlayWrong
                                     }}>
                   {children}
             </CounterContext.Provider>

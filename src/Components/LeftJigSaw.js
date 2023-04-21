@@ -7,22 +7,25 @@ import AnimationWrong from './AnimationWrong';
 
 
 const LeftJigSaw = ({item, leftColumn, rightColumn, changeLeftColumn,existingShuffledList, changeExistingShuffledList}) => {
-      const [play, changePlay] = useState(false)
-      const [playWrong, changePlayWrong] = useState(false)
+      const [playWrong2, changePlayWrong2] = useState(false)
+
 
       useEffect(()=>{
             if(leftColumn.id === item.id && leftColumn.id === item.id && leftColumn.id === rightColumn.id && leftColumn.id !== undefined){
                   console.log("they match")
-                  changePlay(true)
+                  /* changePlay(true) */
                   changeLeftColumn("")
-            } if(leftColumn.id === item.id && leftColumn.id !== rightColumn.id && leftColumn.id !== undefined && rightColumn.id !== undefined){
-                  changePlayWrong(true)
+            } if(leftColumn.id === item.id && leftColumn.id !== rightColumn.id && leftColumn.id !== undefined && rightColumn.id !== undefined && leftColumn !== ""){
+                  changePlayWrong2(true)
                   console.log("picked but dont match")
+                  setTimeout(()=>{
+                        changePlayWrong2(false)
+                        console.log("timerleft")
+                  }, 1000)
                   changeLeftColumn("")
-
             }
           
-      },[leftColumn,rightColumn, changeLeftColumn, item, changeExistingShuffledList, existingShuffledList])
+      },[leftColumn,rightColumn, changeLeftColumn, item, changeExistingShuffledList, existingShuffledList, playWrong2])
 
       const handleChange = ()=>{
             changeLeftColumn(item);
@@ -38,13 +41,17 @@ const LeftJigSaw = ({item, leftColumn, rightColumn, changeLeftColumn,existingShu
       return (    
       <div className={leftBlock} key={item.index} onClick={handleChange}>
             <div className='left-jigsaw'></div>
-            <span>{item.id}, {item.english}</span>
+            <span>{/* {item.id}, */} {item.english}</span>
             {item.completed?
             <AnimationCheck item={item}/>
             :
             ""}
-            {playWrong?
-            <AnimationWrong item={item} leftColumn={leftColumn} />
+            {playWrong2?
+            <AnimationWrong item={item} 
+            leftColumn={leftColumn} 
+            playWrong2={playWrong2}
+            changePlayWrong2={changePlayWrong2}
+            />
             :
             ""}
             
