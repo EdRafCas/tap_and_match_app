@@ -22,13 +22,13 @@ const IconContainer=styled.div`
 `
 const Icons=styled.div`
       /* border:1px solid white; */
-      svg{
+      img{
             height:100%;
-            max-height:3rem;
+            max-height:1rem;
             width:auto;
             min-width:1rem;
-            @media(max-width: 375px){ 
-                  max-height:1rem;}
+            @media(max-width: 600px){ 
+                  max-height:0.8rem;}
       }
 `
 
