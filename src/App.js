@@ -6,7 +6,6 @@ import {CounterContextProvider} from './Context/CounterContext';
 
 
 
-
 const App = () => {
   const [reset, countReset] = useState(0)
   const WordList = [
@@ -320,19 +319,14 @@ const App = () => {
   }, [])
 
 
-
   return ( 
     <CounterContextProvider>
-      
         <div>
           <Columns
           WordList={WordList}
           reset={reset}
           countReset={countReset}/>
-        </div>
-     
-        
-      
+        </div>    
     </CounterContextProvider>
    );
 }
