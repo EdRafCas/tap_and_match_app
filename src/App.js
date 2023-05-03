@@ -3,7 +3,8 @@ import Columns from './Components/Columns'
 import './App.css';
 import './App.scss';
 import {CounterContextProvider} from './Context/CounterContext';
-
+import { store } from './Redux/store'
+import { Provider } from 'react-redux';
 
 
 const App = () => {
@@ -321,12 +322,12 @@ const App = () => {
 
   return ( 
     <CounterContextProvider>
-        <div>
+      <Provider store={store}>
           <Columns
           WordList={WordList}
           reset={reset}
           countReset={countReset}/>
-        </div>    
+      </Provider>
     </CounterContextProvider>
    );
 }
