@@ -9,6 +9,8 @@ import styled from 'styled-components';
 import Heart from './../img/Heart_icon.png'
 import Flag from './../img/flag_icon.png'
 import GameOver from './../img/game_over.png'
+import { useSelector, useDispatch} from 'react-redux'
+import { increment, reset } from '../Redux/features/counterSlice';
 
 const IconContainer=styled.div`
       display:flex;
@@ -33,9 +35,11 @@ const Icons=styled.div`
 `
 
 
-const Columns = ({WordList,reset, countReset}) => {
-      const {counterBar} =useContext(CounterContext);
-      const {changeCounterBar} =useContext(CounterContext);
+const Columns = ({WordList}) => {
+      const count = useSelector((state) => state.counter.value)
+      const dispatch = useDispatch()
+
+
       const {counterSkips} =useContext(CounterContext);
       const {changeCounterSkips} =useContext(CounterContext);
       const {changeRightColumn} =useContext(CounterContext);
@@ -56,22 +60,20 @@ const Columns = ({WordList,reset, countReset}) => {
             const setShuffle = async() =>{
                   console.log("check")
                  
-                  if(counterBar <= 0){
-                        const slicedArray = WordList.slice(counterBar, counterBar+5);
+                  if(count <= 0){
+                        const slicedArray = WordList.slice(count, count+5);
                         const newList1 = [].concat([...slicedArray])
                         changeExistingShuffledList(newList1.sort((a, b)=> 0.5 - Math.random()))
                         
                         const newList2 = [].concat([...slicedArray])
                         changeExistingShuffledList2(newList2.sort((a, b)=> 0.5 - Math.random()))
-                        console.log(rightColumn)
                   } else{
-                        const slicedArray = WordList.slice(counterBar*5, (counterBar*5)+5);
+                        const slicedArray = WordList.slice(count*5, (count*5)+5);
                         const newList1 = [].concat([...slicedArray])
                         changeExistingShuffledList(newList1.sort((a, b)=> 0.5 - Math.random()))
                         
                         const newList2 = [].concat([...slicedArray])
                         changeExistingShuffledList2(newList2.sort((a, b)=> 0.5 - Math.random()))
-                        console.log(rightColumn)
                         
                   }
                   changeLeftColumn("")
@@ -83,7 +85,7 @@ const Columns = ({WordList,reset, countReset}) => {
             setShuffle();
 
       
-      },[reset, countReset, changeLeftColumn, changeRightColumn])
+      },[reset, changeLeftColumn, changeRightColumn, count])
 
 
       
@@ -95,7 +97,7 @@ const Columns = ({WordList,reset, countReset}) => {
             <div className='container' >
                   <div className='progressBar' >
                         <div className='smallDivsContainer'>
-                              {Array.from({length:counterBar},(_,index)=>{
+                              {Array.from({length:count},(_,index)=>{
                                     return(
                                           <div key={index}></div>
                                     )
@@ -106,7 +108,7 @@ const Columns = ({WordList,reset, countReset}) => {
                                     <IconContainer>
                                           <Icons><img  src={Flag} alt ={'Flag icon'}/></Icons>
                                     </IconContainer>
-                                    <span>{counterBar+"/10"}</span>
+                                    <span>{count+"/10"}</span>
                               </div>
                               <div className='trackInner'>
                                     <>
@@ -129,7 +131,7 @@ const Columns = ({WordList,reset, countReset}) => {
                         
                   </div>
                   <div className='column-container'>
-                        {counterBar <10?
+                        {count <10?
                         <>
                         <LeftColumn 
                               existingShuffledList={existingShuffledList}
@@ -149,7 +151,7 @@ const Columns = ({WordList,reset, countReset}) => {
                               <img  src={GameOver} alt ={'Game over'}/>
                               <div className='button-container'>
 
-                              <button onClick={()=>{changeCounterBar(0);countReset(reset+1)}}>Play Again</button>
+                              <button onClick={()=>{dispatch(reset())}}>Play Again</button>
                               </div>
                         </div>
                         }
@@ -161,16 +163,15 @@ const Columns = ({WordList,reset, countReset}) => {
                         :<IconLikeColor/>}                    
                   </div> 
                   <div className='button-container'>
-                        {counterSkips === 0 || counterBar > 8?
+                        {counterSkips === 0 || count > 8?
                         <button disabled={true}>Skip This one</button>
                         : 
-                        <button  onClick={()=>{changeCounterBar(counterBar+1);countReset(reset+1);changeCounterSkips(counterSkips-1)}}>Skip This one</button>
-                        
+                        <button  onClick={()=>{dispatch(increment());changeCounterSkips(counterSkips-1)}}>Skip This one</button>               
                         }
-                        {countCompleted !==5  || counterBar >= 10 ?
+                        {countCompleted !==5  || count >= 10 ?
                         <button disabled={true} >Continue</button>
                         :
-                        <button onClick={()=>{changeCounterBar(counterBar+1);countReset(reset+1)}}>Continue</button>
+                        <button onClick={()=>dispatch(increment())}>Continue</button>
                         }
                   </div> 
             </div>
