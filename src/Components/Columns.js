@@ -38,16 +38,13 @@ const Icons=styled.div`
 const Columns = ({WordList}) => {
       const count = useSelector((state) => state.counter.value)
       const dispatch = useDispatch()
-
-
+      
       const {counterSkips} =useContext(CounterContext);
       const {changeCounterSkips} =useContext(CounterContext);
       const {changeRightColumn} =useContext(CounterContext);
       const {changeLeftColumn} =useContext(CounterContext);
       const {rightColumn} =useContext(CounterContext);
       const {leftColumn} =useContext(CounterContext);
-
-
       const [existingShuffledList, changeExistingShuffledList] = useState([{}])
       const [existingShuffledList2, changeExistingShuffledList2] = useState([{}])
 

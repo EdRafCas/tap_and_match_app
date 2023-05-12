@@ -10,10 +10,6 @@ const CounterContextProvider = ({children}) => {
       const [leftColumn, changeLeftColumn] = useState("")
       const [rightColumn, changeRightColumn] = useState("")
       const [playWrong, changePlayWrong] = useState("")
-/*       const [leftColumn, changeLeftColumn] = useState("left")
-      const [rightColumn, changeRightColumn] = useState("right") */
-
-
       return ( 
             <CounterContext.Provider value={{
                                     house:"house",
